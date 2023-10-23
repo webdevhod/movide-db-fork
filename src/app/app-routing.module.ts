@@ -7,6 +7,7 @@ import { PersonComponent } from './person/person.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'movie', component: MovieComponent },
+  { path: 'movie/:movieId', component: MovieComponent },
   { path: 'person', component: PersonComponent },
 ];
 
