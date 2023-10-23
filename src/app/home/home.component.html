@@ -9,7 +9,7 @@
               <span class="orange"><a href="#">advanture</a></span>
             </div>
             <h1>
-              <a href="#"> {{mostPopularMovie?.title}} <span>{{mostPopularMovie?.release_date ? tmdb.getYearFromReleaseDate(mostPopularMovie?.release_date) :""}}</span></a>
+              <a [routerLink]="['/movie', mostPopularMovie?.id]"> {{mostPopularMovie?.title}} <span>{{mostPopularMovie?.release_date ? tmdb.getYearFromReleaseDate(mostPopularMovie?.release_date) :""}}</span></a>
             </h1>
             <div class="social-btn">
               <a href="#" class="parent-btn"
