@@ -1,8 +1,8 @@
-import { Movie } from "./movie.interface";
+import { DiscoverMovieResult } from "./discover-movieresult.interface";
 
 export interface DiscoverMovie {
   page: number;
-  results: Movie[];
+  results: DiscoverMovieResult[];
   total_pages: number;
   total_results: number;
 }

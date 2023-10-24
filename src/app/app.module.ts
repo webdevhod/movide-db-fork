@@ -10,6 +10,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { MovieComponent } from './movie/movie.component';
 import { PersonComponent } from './person/person.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { PersonComponent } from './person/person.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

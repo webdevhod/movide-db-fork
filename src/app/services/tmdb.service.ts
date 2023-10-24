@@ -1,11 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { MovieComponent } from '../movie/movie.component';
-import { Movie } from '../interfaces/movie.interface';
 import { DiscoverMovie } from '../interfaces/discover-movie.interface';
+import { Movie } from '../interfaces/movie.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,18 +12,27 @@ import { DiscoverMovie } from '../interfaces/discover-movie.interface';
 export class TmdbService {
   constructor(private http: HttpClient) {}
 
-  // GET movies from tmdb
-  getMostPopularMovie(): Observable<DiscoverMovie> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${environment.tmdbAccessToken}`,
-    });
-    return this.http.get<DiscoverMovie>(environment.getMoviesUrl, {
-      headers: headers,
-    });
+  // GET Popular movie from tmdb
+  getMostPopularMovies(): Observable<DiscoverMovie> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+    };
+    return this.http.get<DiscoverMovie>(environment.getDiscoverMoviesUrl,options
+    );
   }
 
-  getYearFromReleaseDate(date : string | undefined): number{
-    return date ? (new Date(Date.parse(date))).getFullYear(): 1900;
+  // GET movies from tmdb
+  getMovieFromId(movieId: string): Observable<Movie> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+      },
+    };
+    return this.http.get<Movie>(`environment.getMoviesUrl${movieId}`, options);
   }
 }
