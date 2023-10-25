@@ -49,9 +49,9 @@
                 ><span>{{ mostPopularMovie?.vote_average }}</span> /10
               </p>
               <ul class="mv-infor">
-                <li>Run Time: 2h21’</li>
+                <li>Run Time: {{mostPopularMovieRunTime | runtimeConverter}}</li>
                 <li>Rated: PG-13</li>
-                <li>Release: 1 May 2015</li>
+                <li>Release: {{mostPopularMovieReleaseDate | date : "d MMMM YYYY"}}</li>
               </ul>
             </div>
           </div>

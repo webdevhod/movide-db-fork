@@ -24,7 +24,7 @@ export class TmdbService {
   }
 
   // GET movies from tmdb
-  getMovieFromId(movieId: string): Observable<Movie> {
+  getMovieFromId(movieId: number): Observable<Movie> {
     const options = {
       headers: {
         Authorization: `Bearer ${environment.tmdbAccessToken}`,
@@ -33,6 +33,6 @@ export class TmdbService {
         language: 'en-US',
       },
     };
-    return this.http.get<Movie>(`environment.getMoviesUrl${movieId}`, options);
+    return this.http.get<Movie>(`${environment.getMoviesUrl}${movieId}`, options);
   }
 }

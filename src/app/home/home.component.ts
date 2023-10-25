@@ -11,17 +11,14 @@ import { DiscoverMovieResult } from '../interfaces/discover-movieresult.interfac
 export class HomeComponent {
   mostPopularMovie: DiscoverMovieResult | undefined;
   mostPopularMovieReleaseDate: Date | undefined;
+  mostPopularMovieRunTime: number | undefined;
   constructor(public tmdb: TmdbService) {}
 
   async ngOnInit() {
     this.mostPopularMovie = (
       await lastValueFrom(this.tmdb.getMostPopularMovies())
     ).results[0];
-
-    this.mostPopularMovieReleaseDate = await new Date(
-      (
-        await lastValueFrom(this.tmdb.getMostPopularMovies())
-      ).results[0].release_date + 'T00:00:00'
-    );
+    this.mostPopularMovieReleaseDate = new Date(this.mostPopularMovie.release_date);
+    this.mostPopularMovieRunTime = (await lastValueFrom(this.tmdb.getMovieFromId(this.mostPopularMovie.id))).runtime;
   }
 }
