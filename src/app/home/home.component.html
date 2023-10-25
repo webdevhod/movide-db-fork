@@ -5,14 +5,19 @@
         <div class="movie-item">
           <div class="title-in">
             <div class="cate">
-              <span class="yell"><a href="#">Action</a></span>
-              <span class="orange"><a href="#">advanture</a></span>
+              <span
+                class="orange"
+                *ngFor="let genre of mostPopularMovie?.genres"
+              >
+                <a href="#">{{ genre.name }}</a>
+              </span>
             </div>
+
             <h1>
-              <a [routerLink]="['/movie', mostPopularMovie?.id]">
+              <a [routerLink]="['/movie', mostPopularMovieId]">
                 {{ mostPopularMovie?.title }}
                 <span>{{
-                  mostPopularMovieReleaseDate | date : "YYYY"
+                  mostPopularMovie?.release_date | date : "YYYY"
                 }}</span></a
               >
             </h1>
@@ -46,12 +51,17 @@
             <div class="mv-details">
               <p>
                 <i class="ion-android-star"></i
-                ><span>{{ mostPopularMovie?.vote_average }}</span> /10
+                ><span>{{ mostPopularMovie?.vote_average?.toFixed(1) }}</span>
+                /10
               </p>
               <ul class="mv-infor">
-                <li>Run Time: {{mostPopularMovieRunTime | runtimeConverter}}</li>
-                <li>Rated: PG-13</li>
-                <li>Release: {{mostPopularMovieReleaseDate | date : "d MMMM YYYY"}}</li>
+                <li>
+                  Run Time: {{ mostPopularMovie?.runtime | runtimeConverter }}
+                </li>
+                <li>
+                  Release:
+                  {{ mostPopularMovie?.release_date | date : "d MMMM YYYY" }}
+                </li>
               </ul>
             </div>
           </div>

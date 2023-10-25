@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TmdbService } from '../services/tmdb.service';
 import { lastValueFrom } from 'rxjs';
 import { DiscoverMovieResult } from '../interfaces/discover-movieresult.interface';
+import { Movie } from '../interfaces/movie.interface';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +10,14 @@ import { DiscoverMovieResult } from '../interfaces/discover-movieresult.interfac
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  mostPopularMovie: DiscoverMovieResult | undefined;
-  mostPopularMovieReleaseDate: Date | undefined;
-  mostPopularMovieRunTime: number | undefined;
+  mostPopularMovieId: number | undefined;
+  mostPopularMovie: Movie | undefined;
   constructor(public tmdb: TmdbService) {}
 
   async ngOnInit() {
-    this.mostPopularMovie = (
+    this.mostPopularMovieId = (
       await lastValueFrom(this.tmdb.getMostPopularMovies())
-    ).results[0];
-    this.mostPopularMovieReleaseDate = new Date(this.mostPopularMovie.release_date);
-    this.mostPopularMovieRunTime = (await lastValueFrom(this.tmdb.getMovieFromId(this.mostPopularMovie.id))).runtime;
+    ).results[0].id;
+    this.mostPopularMovie = (await lastValueFrom(this.tmdb.getMovieFromId(this.mostPopularMovieId)));
   }
 }
