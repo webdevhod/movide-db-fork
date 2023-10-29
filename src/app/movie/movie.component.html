@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <!-- <h1> movie listing - list</h1>
-				<ul class="breadcumb">
+        <!-- <h1> movie listing - list</h1> -->
+        <!-- <ul class="breadcumb">
 					<li class="active"><a href="#">Home</a></li>
 					<li> <span class="ion-ios-arrow-right"></span> movie listing</li>
 				</ul> -->
@@ -16,7 +16,10 @@
     <div class="row ipad-width2">
       <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="movie-img sticky-sb">
-          <img src="{{ posterPath + movie?.poster_path }}" alt="" />
+          <img
+            src="{{ posterPath + movie?.poster_path }}"
+            alt="{{ movie?.title }}"
+          />
           <div class="movie-btn">
             <div class="btn-transform transform-vertical red">
               <div>

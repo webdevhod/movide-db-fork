@@ -13,7 +13,7 @@ export class RuntimeConverterPipe implements PipeTransform {
     if(value === undefined) {
       throw new Error("Undefined value")
     }
-    return `${value/60 ^ 0}:${value%60}'`
+    return `${value/60 ^ 0}h ${value%60}m`
   }
 
 }

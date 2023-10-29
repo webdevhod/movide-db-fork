@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TmdbService } from '../services/tmdb.service';
 import { lastValueFrom } from 'rxjs';
-import { DiscoverMovieResult } from '../interfaces/discover-movieresult.interface';
 import { Movie } from '../interfaces/movie.interface';
 
 @Component({

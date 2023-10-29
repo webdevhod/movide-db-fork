@@ -5658,7 +5658,7 @@ ul {
 }
 /*movie single hero*/
 .mv-single-hero {
-  background: url('../images/uploads/hero-bg.jpg') no-repeat;
+  background: url('../images/header.jpg');
   height: 598px;
 }
 /*series single hero*/
@@ -7131,7 +7131,7 @@ p.ceb-single {
   text-align: right;
 }
 .sliderv2 {
-  background: url('../images/header.jpg') no-repeat;
+  background: url('../images/header.jpg');
   padding-bottom: 0;
   padding-top: 180px;
   overflow: hidden;
