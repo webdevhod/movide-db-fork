@@ -11,6 +11,10 @@ import { MovieComponent } from './movie/movie.component';
 import { PersonComponent } from './person/person.component';
 import { DatePipe } from '@angular/common';
 import { RuntimeConverterPipe } from './pipes/runtime-converter.pipe';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,15 @@ import { RuntimeConverterPipe } from './pipes/runtime-converter.pipe';
     PersonComponent,
     RuntimeConverterPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    DropdownModule,
+    FormsModule,
+    InputTextModule,
+  ],
   providers: [DatePipe, RuntimeConverterPipe],
   bootstrap: [AppComponent],
 })

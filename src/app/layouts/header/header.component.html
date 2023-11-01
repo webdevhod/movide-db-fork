@@ -33,68 +33,21 @@
           <li class="hidden">
             <a href="#page-top"></a>
           </li>
-          <li class="dropdown first">
-            <a
-              class="btn btn-default dropdown-toggle lv1"
-              data-toggle="dropdown"
-              data-hover="dropdown"
-            >
-              Home <i class="fa fa-angle-down" aria-hidden="true"></i>
-            </a>
-            <ul class="dropdown-menu level1">
-              <li><a href="index.html">Home 01</a></li>
-              <li><a href="homev2.html">Home 02</a></li>
-              <li><a href="homev3.html">Home 03</a></li>
-            </ul>
+          <li>
+            <!-- top search form -->
+            <div class="top-search">
+              <p-dropdown
+                [options]="searchTypes"
+                [(ngModel)]="selectedSearchType"
+                optionLabel="name"
+              ></p-dropdown>
+              <span class="p-input-icon-right">
+                <i class="pi pi-search" (click)="handleSearch()"></i>
+                <input pInputText type="text" [(ngModel)]="searchTerm" />
+              </span>
+            </div>
           </li>
-          <li class="dropdown first">
-            <a
-              class="btn btn-default dropdown-toggle lv1"
-              data-toggle="dropdown"
-              data-hover="dropdown"
-            >
-              movies<i class="fa fa-angle-down" aria-hidden="true"></i>
-            </a>
-            <ul class="dropdown-menu level1">
-              <li><a href="moviegrid.html">Movie grid</a></li>
-              <li><a href="moviegridfw.html">movie grid full width</a></li>
-              <li><a href="movielist.html">Movie list</a></li>
-              <li class="it-last">
-                <a href="moviesingle.html">Movie single</a>
-              </li>
-            </ul>
-          </li>
-          <li class="dropdown first">
-            <a
-              class="btn btn-default dropdown-toggle lv1"
-              data-toggle="dropdown"
-              data-hover="dropdown"
-            >
-              celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
-            </a>
-            <ul class="dropdown-menu level1">
-              <li><a href="celebritygrid01.html">celebrity grid 01</a></li>
-              <li><a href="celebritygrid02.html">celebrity grid 02 </a></li>
-              <li><a href="celebritylist.html">celebrity list</a></li>
-              <li class="it-last">
-                <a href="celebritysingle.html">celebrity single</a>
-              </li>
-            </ul>
-          </li>
-          <span _ngcontent-qwt-c93="" class="p-input-icon-left">
-			<i _ngcontent-qwt-c93="" class="pi pi-search"></i>
-            <i _ngcontent-qwt-c93="" class="pi pi-spin pi-spinner"></i>
-            <input
-              _ngcontent-qwt-c93=""
-              type="text"
-              pinputtext=""
-              placeholder="Search"
-              class="p-inputtext p-component p-element ng-pristine ng-valid ng-touched"
-          /></span>
-        </ul>
-        <ul class="nav navbar-nav flex-child-menu menu-right">
-          <li class="loginLink"><a href="#">LOG In</a></li>
-          <li class="btn signupLink"><a href="#">sign up</a></li>
+          
         </ul>
       </div>
       <!-- /.navbar-collapse -->
