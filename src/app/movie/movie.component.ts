@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { TmdbService } from '../services/tmdb.service';
 import { Movie } from '../interfaces/movie.interface';
-import { catchError, lastValueFrom, tap } from 'rxjs';
+import { lastValueFrom, tap } from 'rxjs';
 
 @Component({
   selector: 'app-movie',

@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-interface SearchType {
-  name: string;
-  type: string;
-}
+import { Router } from '@angular/router';
+import { SearchType } from 'src/app/interfaces/search-type';
+import { TmdbService } from 'src/app/services/tmdb.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  searchTerm: string | undefined = '';
+  searchTerm: string = '';
   searchTypes: SearchType[] | undefined;
   selectedSearchType: SearchType | undefined;
+
+  constructor(private router: Router, public tmdb: TmdbService) {}
 
   ngOnInit() {
     this.searchTypes = [
@@ -20,7 +22,9 @@ export class HeaderComponent {
       { name: 'Person', type: 'person' },
     ];
   }
+
   handleSearch() {
     console.log(this.searchTerm);
+    this.router.navigate(['movies/find', { value: this.searchTerm }]);
   }
 }

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { DiscoverMovie } from '../interfaces/discover-movie.interface';
 import { Movie } from '../interfaces/movie.interface';
-import { DiscoverMovieResult } from '../interfaces/discover-movieresult.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,7 @@ export class TmdbService {
   constructor(private http: HttpClient) {}
 
   /**
-   * GET 20 most popular movie from tmdb in given page
+   * GET 20 most popular movies from tmdb in given page
    * @param page
    * @returns List of 20 DiscoverMovieResult
    */
@@ -84,5 +83,32 @@ export class TmdbService {
 
   getThumbnailLink(jpgFileLink: string | undefined): string {
     return this.getMoviePosterFromSize(jpgFileLink, '185');
+  }
+
+  /**
+   * GET at most 20 movies from tmdb with given keyword to search
+   *
+   * @param keyword search term for movie title
+   * @param page page number
+   * @returns List of 20 DiscoverMovieResult found by keyword
+   */
+  searchMovieFromTitle(
+    keyword: string,
+    page: number = 1
+  ): Observable<DiscoverMovie> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+        query: keyword,
+        page: page,
+      },
+    };
+    return this.http.get<DiscoverMovie>(
+      environment.searchMoviesByTitle,
+      options
+    );
   }
 }

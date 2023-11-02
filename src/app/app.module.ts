@@ -8,7 +8,9 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { MovieComponent } from './movie/movie.component';
+import { MovieSearchResultComponent } from './movie-search-result/movie-search-result.component';
 import { PersonComponent } from './person/person.component';
+
 import { DatePipe } from '@angular/common';
 import { RuntimeConverterPipe } from './pipes/runtime-converter.pipe';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +27,7 @@ import { InputTextModule } from 'primeng/inputtext';
     MovieComponent,
     PersonComponent,
     RuntimeConverterPipe,
+    MovieSearchResultComponent,
   ],
   imports: [
     BrowserModule,
