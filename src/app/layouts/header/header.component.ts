@@ -24,7 +24,8 @@ export class HeaderComponent {
   }
 
   handleSearch() {
-    console.log(this.searchTerm);
-    this.router.navigate(['movies/find', { value: this.searchTerm }]);
+    this.router.navigate(['movies/find'], {
+      queryParams: { value: this.searchTerm, type: this.selectedSearchType?.type},
+    });
   }
 }

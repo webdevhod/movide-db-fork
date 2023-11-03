@@ -17,7 +17,7 @@ export class MovieComponent {
   constructor(private route: ActivatedRoute, public tmdb: TmdbService) {}
 
   async ngOnInit() {
-    this.movieId = (this.route.snapshot.paramMap.get('movieId'));
+    this.movieId = this.route.snapshot.paramMap.get('movieId');
     if (this.movieId === null || this.movieId === undefined) {
       throw new Error('Movie id not found');
     }
