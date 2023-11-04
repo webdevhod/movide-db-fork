@@ -1,0 +1,23 @@
+.movie_list {
+  &::ng-deep {
+    .search-results-container {
+      padding-top: 65px;
+
+      .p-datatable .p-datatable-tbody > tr {
+        background-color: transparent;
+      }
+
+      p-table {
+        p-paginator {
+          p-dropdown {
+            span {
+              display: flex;
+              align-items: center;
+              padding: 2px 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { InputTextModule } from 'primeng/inputtext';
     DropdownModule,
     FormsModule,
     InputTextModule,
+    TableModule,
   ],
   providers: [DatePipe, RuntimeConverterPipe],
   bootstrap: [AppComponent],
