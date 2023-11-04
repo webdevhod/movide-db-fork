@@ -293,11 +293,11 @@
                       </div>
                       <div class="sb-it">
                         <h6>Release Date:</h6>
-                        <p>May 1, 2015 (U.S.A)</p>
+                        <p>{{ movie?.release_date | date : "d MMMM YYYY" }}</p>
                       </div>
                       <div class="sb-it">
                         <h6>Run Time:</h6>
-                        <p>141 min</p>
+                        <p>{{ movie?.runtime | runtimeConverter }}</p>
                       </div>
                       <div class="sb-it">
                         <h6>MMPA Rating:</h6>
