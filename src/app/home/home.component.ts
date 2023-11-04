@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { TmdbService } from '../services/tmdb.service';
 import { lastValueFrom } from 'rxjs';
 import { Movie } from '../interfaces/movie.interface';
@@ -9,7 +9,7 @@ import { DiscoverMovie } from '../interfaces/discover-movie.interface';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit, OnInit {
   mostPopularMovies: DiscoverMovie | undefined;
   topMoviesMaxListSize: number = 20;
   topMovies: Movie[] = [];
@@ -28,5 +28,19 @@ export class HomeComponent {
         )
       );
     }
+  }
+
+  ngAfterViewInit() {
+    this.loadScript('assets/js/custom.js');
+  }
+
+  public loadScript(url: string) {
+    const body = <HTMLDivElement>document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = url;
+    script.async = false;
+    script.defer = true;
+    body.appendChild(script);
   }
 }
