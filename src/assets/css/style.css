@@ -5649,13 +5649,13 @@ ul {
   margin-left: 15px;
   margin-right: 15px;
 }
-.hero:before {
+/* .hero:before {
   position: absolute;
   content: '';
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.75);
-}
+} */
 /*movie single hero*/
 .mv-single-hero {
   background: url('../images/header.jpg');
