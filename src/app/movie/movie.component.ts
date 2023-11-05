@@ -22,5 +22,8 @@ export class MovieComponent {
       throw new Error('Movie id not found');
     }
     this.movie = await lastValueFrom(this.tmdb.getMovieFromId(+this.movieId));
+
+    // console.log(await lastValueFrom(this.tmdb.getMovieCreditsFromId(507089)));
+
   }
 }

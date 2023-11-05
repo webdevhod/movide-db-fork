@@ -20,7 +20,7 @@
         </div>
         <div
           class="movie-item-style-2"
-          *ngFor="let movie of movieSearchResult!.results"
+          *ngFor="let movie of movieSearchResult?.results"
         >
           <img src="{{ tmdb.getThumbnailLink(movie.poster_path) }}" alt="" />
           <div class="mv-item-infor">

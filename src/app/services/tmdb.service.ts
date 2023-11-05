@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { DiscoverMovie } from '../interfaces/discover-movie.interface';
 import { Movie } from '../interfaces/movie.interface';
+import { MovieCast } from '../interfaces/movie-cast.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -108,6 +109,23 @@ export class TmdbService {
     };
     return this.http.get<DiscoverMovie>(
       environment.searchMoviesByTitle,
+      options
+    );
+  }
+
+  getMovieCreditsFromId(
+    movieId: number
+  ): Observable<MovieCast> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+      },
+    };
+    return this.http.get<MovieCast>(
+      environment.getMovieCredits(movieId.toString()),
       options
     );
   }

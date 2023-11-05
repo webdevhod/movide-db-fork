@@ -7,4 +7,6 @@ export const environment = {
   getMoviesUrl: 'https://api.themoviedb.org/3/movie/',
   searchMoviesByTitle: 'https://api.themoviedb.org/3/search/movie',
   posterPath: 'https://image.tmdb.org//t/p/',
+  getMovieCredits: (movie_id: string) =>
+    `https://api.themoviedb.org/3/movie/${movie_id}/credits`,
 };
