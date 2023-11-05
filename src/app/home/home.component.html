@@ -2,14 +2,14 @@
   <div class="container">
     <div class="row">
       <div class="slider-single-item">
-        <div class="movie-item">
+        <div class="movie-item" *ngFor = "let topMovie of topMovies">
           <div class="row">
             <div class="col-md-4 col-sm-12 col-xs-12">
               <div class="mv-img-2">
-                <a [routerLink]="['/movie', topMovies[0].id]"
+                <a [routerLink]="['/movie', topMovie.id]"
                   ><img
-                    src="{{ tmdb.getPosterLink(topMovies[0].poster_path) }}"
-                    alt="{{ topMovies[0].title }}"
+                    src="{{ tmdb.getPosterLink(topMovie.poster_path) }}"
+                    alt="{{ topMovie.title }}"
                 /></a>
               </div>
             </div>
@@ -18,16 +18,16 @@
                 <div class="cate">
                   <span
                     class="{{ genresTagColor[i % genresTagColor.length] }}"
-                    *ngFor="let genre of topMovies[0].genres; let i = index"
+                    *ngFor="let genre of topMovie.genres; let i = index"
                   >
                     <a href="#">{{ genre.name }}</a>
                   </span>
                 </div>
                 <h1>
-                  <a [routerLink]="['/movie', topMovies[0].id]">
-                    {{ topMovies[0].title }}
+                  <a [routerLink]="['/movie', topMovie.id]">
+                    {{ topMovie.title }}
                     <span>{{
-                      topMovies[0].release_date | date : "YYYY"
+                      topMovie.release_date | date : "YYYY"
                     }}</span></a
                   >
                 </h1>
@@ -39,102 +39,31 @@
                 <div class="mv-details">
                   <p>
                     <i class="ion-android-star"></i
-                    ><span>{{ topMovies[0].vote_average.toFixed(1) }}</span>
+                    ><span>{{ topMovie.vote_average.toFixed(1) }}</span>
                     /10
                   </p>
                   <ul class="mv-infor">
                     <li>
                       Run Time:
-                      {{ topMovies[0].runtime | runtimeConverter }}
+                      {{ topMovie.runtime | runtimeConverter }}
                     </li>
                     <li>
                       Release:
-                      {{ topMovies[0].release_date | date : "d MMMM YYYY" }}
+                      {{ topMovie.release_date | date : "d MMMM YYYY" }}
                     </li>
                   </ul>
                 </div>
                 <div class="btn-transform transform-vertical">
                   <div>
                     <a
-                      [routerLink]="['/movie', topMovies[0].id]"
+                      [routerLink]="['/movie', topMovie.id]"
                       class="item item-1 redbtn"
                       >more detail</a
                     >
                   </div>
                   <div>
                     <a
-                      [routerLink]="['/movie', topMovies[0].id]"
-                      class="item item-2 redbtn hvrbtn"
-                      >more detail</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="movie-item">
-          <div class="row">
-            <div class="col-md-4 col-sm-12 col-xs-12">
-              <div class="mv-img-2">
-                <a [routerLink]="['/movie', topMovies[1].id]"
-                  ><img
-                    src="{{ tmdb.getPosterLink(topMovies[1].poster_path) }}"
-                    alt="{{ topMovies[1].title }}"
-                /></a>
-              </div>
-            </div>
-            <div class="col-md-8 col-sm-12 col-xs-12">
-              <div class="title-in">
-                <div class="cate">
-                  <span
-                    class="{{ genresTagColor[i % genresTagColor.length] }}"
-                    *ngFor="let genre of topMovies[1].genres; let i = index"
-                  >
-                    <a href="#">{{ genre.name }}</a>
-                  </span>
-                </div>
-                <h1>
-                  <a [routerLink]="['/movie', topMovies[1].id]">
-                    {{ topMovies[1].title }}
-                    <span>{{
-                      topMovies[1].release_date | date : "YYYY"
-                    }}</span></a
-                  >
-                </h1>
-                <div class="social-btn">
-                  <a href="#" class="parent-btn"
-                    ><i class="ion-play"></i> Watch Trailer</a
-                  >
-                </div>
-                <div class="mv-details">
-                  <p>
-                    <i class="ion-android-star"></i
-                    ><span>{{ topMovies[1].vote_average.toFixed(1) }}</span>
-                    /10
-                  </p>
-                  <ul class="mv-infor">
-                    <li>
-                      Run Time:
-                      {{ topMovies[1].runtime | runtimeConverter }}
-                    </li>
-                    <li>
-                      Release:
-                      {{ topMovies[1].release_date | date : "d MMMM YYYY" }}
-                    </li>
-                  </ul>
-                </div>
-                <div class="btn-transform transform-vertical">
-                  <div>
-                    <a
-                      [routerLink]="['/movie', topMovies[1].id]"
-                      class="item item-1 redbtn"
-                      >more detail</a
-                    >
-                  </div>
-                  <div>
-                    <a
-                      [routerLink]="['/movie', topMovies[1].id]"
+                      [routerLink]="['/movie', topMovie.id]"
                       class="item item-2 redbtn hvrbtn"
                       >more detail</a
                     >
