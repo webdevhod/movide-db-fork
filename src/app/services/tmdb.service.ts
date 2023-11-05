@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { DiscoverMovie } from '../interfaces/discover-movie.interface';
@@ -113,9 +113,7 @@ export class TmdbService {
     );
   }
 
-  getMovieCreditsFromId(
-    movieId: number
-  ): Observable<MovieCast> {
+  getMovieCreditsFromId(movieId: number): Observable<MovieCast> {
     const options = {
       headers: {
         Authorization: `Bearer ${environment.tmdbAccessToken}`,
@@ -128,5 +126,14 @@ export class TmdbService {
       environment.getMovieCredits(movieId.toString()),
       options
     );
+  }
+
+  getMovieAndCredits(
+    movieId: number
+  ): Observable<{ movie: Movie; movieCast: MovieCast }> {
+    return forkJoin({
+      movie: this.getMovieFromId(movieId),
+      movieCast: this.getMovieCreditsFromId(movieId),
+    });
   }
 }

@@ -24,6 +24,7 @@ export class MovieComponent {
     this.movie = await lastValueFrom(this.tmdb.getMovieFromId(+this.movieId));
 
     // console.log(await lastValueFrom(this.tmdb.getMovieCreditsFromId(507089)));
+    console.log(await lastValueFrom(this.tmdb.getMovieAndCredits(507089)));
 
   }
 }

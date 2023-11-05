@@ -1,4 +1,4 @@
-export interface Cast {
+export interface Person {
   adult: boolean;
   gender: number;
   id: number;

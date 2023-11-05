@@ -1,6 +1,6 @@
-import { Cast } from './cast';
+import { Person } from "./person.interface";
 
 export interface MovieCast {
   id: number;
-  cast: Cast[];
+  cast: Person[];
 }
