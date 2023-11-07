@@ -13,7 +13,7 @@ import { lastValueFrom, tap } from 'rxjs';
 export class MovieComponent {
   movieId: string | undefined | null;
   movie: Movie | undefined;
-  posterPath: string = environment.posterPath;
+  posterPath: string = environment.posterPathUrl;
   constructor(private route: ActivatedRoute, public tmdb: TmdbService) {}
 
   async ngOnInit() {

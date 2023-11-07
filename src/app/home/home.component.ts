@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { TmdbService } from '../services/tmdb.service';
 import { lastValueFrom } from 'rxjs';
 import { Movie } from '../interfaces/movie.interface';
-import { DiscoverMovie } from '../interfaces/discover-movie.interface';
+import { Results } from '../interfaces/results.interface';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +10,12 @@ import { DiscoverMovie } from '../interfaces/discover-movie.interface';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements AfterViewInit, OnInit {
-  mostPopularMovies: DiscoverMovie | undefined;
-  topMoviesMaxListSize: number = 20;
+  mostPopularMovies: Results | undefined;
+  topMoviesMaxListSize: number = 5;
   topMovies: Movie[] = [];
   genresTagColor: string[] = ['blue', 'yell', 'orange'];
+  trendingPeoples: Results | undefined;
+  trendingPeoplesListSize: number = 10;
 
   constructor(public tmdb: TmdbService) {}
 
@@ -28,6 +30,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
         )
       );
     }
+
+    this.trendingPeoples = await lastValueFrom(
+      this.tmdb.getTrendingPeopleFromRange("week")
+    );
   }
 
   ngAfterViewInit() {

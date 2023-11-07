@@ -1,8 +1,9 @@
 import { DiscoverMovieResult } from "./discover-movieresult.interface";
+import { TrendingPeoples } from "./trending-peoples.interface";
 
-export interface DiscoverMovie {
+export interface Results {
   page: number;
-  results: DiscoverMovieResult[];
+  results: any[];
   total_pages: number;
   total_results: number;
 }
