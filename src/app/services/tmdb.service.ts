@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment';
 import { Movie } from '../interfaces/movie.interface';
 import { MovieCast } from '../interfaces/movie-cast.interface';
 import { Results } from '../interfaces/results.interface';
+import { PersonDetails } from '../interfaces/person-details.interface';
+import { MovieCredits } from '../interfaces/movie-credits';
 
 @Injectable({
   providedIn: 'root',
@@ -67,23 +69,27 @@ export class TmdbService {
    * @param sizeAsString
    * @returns Link to movie poster with size
    */
-  getMoviePosterFromSize(
+  getImageWithSize(
     jpgFileLink: string | undefined,
     sizeAsString: string = '500'
   ) {
     return jpgFileLink
-      ? `${environment.posterPathUrl}${
+      ? `${environment.imagePathUrl}${
           sizeAsString === 'original' ? '' : 'w'
         }${sizeAsString}${jpgFileLink}`
       : '';
   }
 
   getPosterLink(jpgFileLink: string | undefined): string {
-    return this.getMoviePosterFromSize(jpgFileLink, '300');
+    return this.getImageWithSize(jpgFileLink, '300');
   }
 
   getThumbnailLink(jpgFileLink: string | undefined): string {
-    return this.getMoviePosterFromSize(jpgFileLink, '185');
+    return this.getImageWithSize(jpgFileLink, '185');
+  }
+
+  getPeopleProfileImageLink(jpgFileLink: string | undefined): string {
+    return this.getImageWithSize(jpgFileLink, '92');
   }
 
   /**
@@ -151,4 +157,36 @@ export class TmdbService {
       options
     );
   }
+
+  getPersonFromId(personId: number): Observable<PersonDetails> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+      },
+    };
+    return this.http.get<PersonDetails>(
+      environment.getPersonUrl(personId.toString()),
+      options
+    );
+  }
+
+  getPersonMovieCredits(personId: number): Observable<MovieCredits> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+      },
+    };
+    return this.http.get<MovieCredits>(
+      environment.getPersonMovieCreditsUrl(personId.toString()),
+      options
+    );
+  }
+
+
 }

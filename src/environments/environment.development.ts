@@ -6,9 +6,13 @@ export const environment = {
   getDiscoverMoviesUrl: 'https://api.themoviedb.org/3/discover/movie',
   getMoviesUrl: 'https://api.themoviedb.org/3/movie/',
   searchMoviesByTitleUrl: 'https://api.themoviedb.org/3/search/movie',
-  posterPathUrl: 'https://image.tmdb.org/t/p/',
+  imagePathUrl: 'https://image.tmdb.org/t/p/',
   getMovieCreditsUrl: (movie_id: string) =>
     `https://api.themoviedb.org/3/movie/${movie_id}/credits`,
   getTrendingPeopleUrl: (range: string) =>
     `https://api.themoviedb.org/3/trending/person/${range}`,
+  getPersonUrl: (person_id: string) =>
+    `https://api.themoviedb.org/3/person/${person_id}`,
+  getPersonMovieCreditsUrl: (person_id: string) =>
+    `https://api.themoviedb.org/3/person/${person_id}/movie_credits`,
 };

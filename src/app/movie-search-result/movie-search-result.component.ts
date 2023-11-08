@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SearchType } from '../interfaces/search-type';
+import { SearchType } from '../interfaces/search-type.interface';
 import { TmdbService } from '../services/tmdb.service';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { Observable, lastValueFrom, map } from 'rxjs';

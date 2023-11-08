@@ -1368,10 +1368,10 @@
               "
             >
               <a href="#"
-                ><img src="assets/images/uploads/ava1.jpg" alt=""
+                ><img src="{{ tmdb.getPeopleProfileImageLink(trendingPeople.profile_path) }}" alt="{{ trendingPeople.original_name }}"
               /></a>
               <div class="celeb-author">
-                <h6><a href="#"> {{ trendingPeople.original_name }} </a></h6>
+                <h6><a [routerLink]="['/person', trendingPeople.id]"> {{ trendingPeople.original_name }} </a></h6>
                 <span>{{ trendingPeople.known_for_department }}</span>
               </div>
             </div>

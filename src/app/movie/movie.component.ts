@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { TmdbService } from '../services/tmdb.service';
 import { Movie } from '../interfaces/movie.interface';
-import { lastValueFrom, tap } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-movie',
@@ -13,7 +13,7 @@ import { lastValueFrom, tap } from 'rxjs';
 export class MovieComponent {
   movieId: string | undefined | null;
   movie: Movie | undefined;
-  posterPath: string = environment.posterPathUrl;
+  posterPath: string = environment.imagePathUrl;
   constructor(private route: ActivatedRoute, public tmdb: TmdbService) {}
 
   async ngOnInit() {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchType } from 'src/app/interfaces/search-type';
+import { SearchType } from 'src/app/interfaces/search-type.interface';
 import { TmdbService } from 'src/app/services/tmdb.service';
 
 @Component({

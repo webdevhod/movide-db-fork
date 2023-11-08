@@ -15,7 +15,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   topMovies: Movie[] = [];
   genresTagColor: string[] = ['blue', 'yell', 'orange'];
   trendingPeoples: Results | undefined;
-  trendingPeoplesListSize: number = 10;
+  trendingPeoplesListSize: number = 5;
 
   constructor(public tmdb: TmdbService) {}
 
