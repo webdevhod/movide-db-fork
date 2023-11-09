@@ -23,13 +23,10 @@ export class MovieSearchResultComponent {
     this.route.queryParams.subscribe((queryParams) => {
       this.searchValue = queryParams['value'];
       this.searchType = queryParams['type'];
-      console.log(this.searchValue);
-      console.log(this.searchType);
 
       if (this.searchType == 'movie') {
         lastValueFrom(this.tmdb.searchMovieFromTitle(this.searchValue)).then(
           (result: Results | undefined) => {
-            console.log(result);
             this.movieSearchResult = result;
           }
         );
