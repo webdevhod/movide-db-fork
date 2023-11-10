@@ -1,4 +1,4 @@
-import { DiscoverMovieResult } from "./discover-movieresult.interface";
+import { DiscoverMovieResult } from "./discover-movie-result.interface";
 import { TrendingPeoples } from "./trending-peoples.interface";
 
 export interface Results {

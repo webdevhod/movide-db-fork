@@ -8,6 +8,7 @@ import { MovieCast } from '../interfaces/movie-cast.interface';
 import { Results } from '../interfaces/results.interface';
 import { PersonDetails } from '../interfaces/person-details.interface';
 import { MovieCredits } from '../interfaces/movie-credits';
+import { MovieList } from '../interfaces/movie-list.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -184,6 +185,28 @@ export class TmdbService {
     };
     return this.http.get<MovieCredits>(
       environment.getPersonMovieCreditsUrl(personId.toString()),
+      options
+    );
+  }
+
+  /**
+   * 
+   * @param category now_playing, popular, top_rated, upcoming
+   * @param page page number
+   * @returns MovieList of size 20
+   */
+  getMoviesListFromCategory(category: string = 'now_playing', page: number = 1): Observable<MovieList> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+        page: page,
+      },
+    };
+    return this.http.get<MovieList>(
+      environment.getMovieListUrl+category,
       options
     );
   }

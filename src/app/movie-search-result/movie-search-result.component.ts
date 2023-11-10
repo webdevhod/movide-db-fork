@@ -3,7 +3,7 @@ import { SearchType } from '../interfaces/search-type.interface';
 import { TmdbService } from '../services/tmdb.service';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { Observable, lastValueFrom, map } from 'rxjs';
-import { DiscoverMovieResult } from '../interfaces/discover-movieresult.interface';
+import { DiscoverMovieResult } from '../interfaces/discover-movie-result.interface';
 import { Results } from '../interfaces/results.interface';
 
 @Component({

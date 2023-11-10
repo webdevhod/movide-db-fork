@@ -7,6 +7,7 @@ export const environment = {
   getMoviesUrl: 'https://api.themoviedb.org/3/movie/',
   searchMoviesByTitleUrl: 'https://api.themoviedb.org/3/search/movie',
   imagePathUrl: 'https://image.tmdb.org/t/p/',
+  getMovieListUrl: 'https://api.themoviedb.org/3/movie/',
   getMovieCreditsUrl: (movie_id: string) =>
     `https://api.themoviedb.org/3/movie/${movie_id}/credits`,
   getTrendingPeopleUrl: (range: string) =>
@@ -15,4 +16,7 @@ export const environment = {
     `https://api.themoviedb.org/3/person/${person_id}`,
   getPersonMovieCreditsUrl: (person_id: string) =>
     `https://api.themoviedb.org/3/person/${person_id}/movie_credits`,
+
+  // Movie categories used
+  movieListCategories: ['now_playing', 'popular', 'top_rated', 'upcoming']
 };

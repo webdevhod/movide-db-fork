@@ -3,6 +3,8 @@ import { TmdbService } from '../services/tmdb.service';
 import { lastValueFrom } from 'rxjs';
 import { Movie } from '../interfaces/movie.interface';
 import { Results } from '../interfaces/results.interface';
+import { environment } from 'src/environments/environment';
+import { MovieList } from '../interfaces/movie-list.interface';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
   mostPopularMovies: Results | undefined;
   topMoviesMaxListSize: number = 5;
   topMovies: Movie[] = [];
+  movieListCategories: string[] = environment.movieListCategories;
+  movieLists: { [id: string]: MovieList | undefined } = {};
   genresTagColor: string[] = ['blue', 'yell', 'orange'];
   trendingPeoples: Results | undefined;
   trendingPeoplesListSize: number = 5;
@@ -20,6 +24,13 @@ export class HomeComponent implements AfterViewInit, OnInit {
   constructor(public tmdb: TmdbService) {}
 
   async ngOnInit() {
+    // Initialize movie lists:
+    for (let category of environment.movieListCategories) {
+      this.movieLists[category] = await lastValueFrom(
+        this.tmdb.getMoviesListFromCategory(category)
+      );
+    }
+
     this.mostPopularMovies = await lastValueFrom(
       this.tmdb.getMostPopularMoviesList()
     );
@@ -32,7 +43,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
     }
 
     this.trendingPeoples = await lastValueFrom(
-      this.tmdb.getTrendingPeopleFromRange("week")
+      this.tmdb.getTrendingPeopleFromRange('week')
     );
   }
 
