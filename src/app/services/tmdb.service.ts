@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin, of } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { Movie } from '../interfaces/movie.interface';
@@ -9,11 +9,18 @@ import { Results } from '../interfaces/results.interface';
 import { PersonDetails } from '../interfaces/person-details.interface';
 import { MovieCredits } from '../interfaces/movie-credits';
 import { MovieList } from '../interfaces/movie-list.interface';
+import { MovieImages } from '../interfaces/movie-image.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TmdbService {
+  options = {
+    headers: {
+      Authorization: `Bearer ${environment.tmdbAccessToken}`,
+    },
+  };
+
   constructor(private http: HttpClient) {}
 
   /**
@@ -30,10 +37,7 @@ export class TmdbService {
         page: page,
       },
     };
-    return this.http.get<Results>(
-      environment.getDiscoverMoviesUrl,
-      options
-    );
+    return this.http.get<Results>(environment.getDiscoverMoviesUrl, options);
   }
 
   /**
@@ -85,6 +89,10 @@ export class TmdbService {
     return this.getImageWithSize(jpgFileLink, '300');
   }
 
+  getMovieThumbnailLink(jpgFileLink: string | undefined): string {
+    return this.getImageWithSize(jpgFileLink, '92');
+  }
+
   getThumbnailLink(jpgFileLink: string | undefined): string {
     return this.getImageWithSize(jpgFileLink, '185');
   }
@@ -100,10 +108,7 @@ export class TmdbService {
    * @param page page number
    * @returns List of 20 DiscoverMovieResult found by keyword
    */
-  searchMovieFromTitle(
-    keyword: string,
-    page: number = 1
-  ): Observable<Results> {
+  searchMovieFromTitle(keyword: string, page: number = 1): Observable<Results> {
     const options = {
       headers: {
         Authorization: `Bearer ${environment.tmdbAccessToken}`,
@@ -114,10 +119,7 @@ export class TmdbService {
         page: page,
       },
     };
-    return this.http.get<Results>(
-      environment.searchMoviesByTitleUrl,
-      options
-    );
+    return this.http.get<Results>(environment.searchMoviesByTitleUrl, options);
   }
 
   getMovieCreditsFromId(movieId: number): Observable<MovieCast> {
@@ -190,12 +192,15 @@ export class TmdbService {
   }
 
   /**
-   * 
+   *
    * @param category now_playing, popular, top_rated, upcoming
    * @param page page number
    * @returns MovieList of size 20
    */
-  getMoviesListFromCategory(category: string = 'now_playing', page: number = 1): Observable<MovieList> {
+  getMoviesListFromCategory(
+    category: string = 'now_playing',
+    page: number = 1
+  ): Observable<MovieList> {
     const options = {
       headers: {
         Authorization: `Bearer ${environment.tmdbAccessToken}`,
@@ -206,10 +211,15 @@ export class TmdbService {
       },
     };
     return this.http.get<MovieList>(
-      environment.getMovieListUrl+category,
+      environment.getMovieListUrl + category,
       options
     );
   }
 
-
+  getMovieImages(movieId: string): Observable<MovieImages> {
+    return this.http.get<MovieImages>(
+      environment.getMovieImages(movieId),
+      this.options
+    );
+  }
 }

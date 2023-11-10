@@ -1,4 +1,10 @@
 .mv-single-hero {
-    background-image: url(../../assets/images/header.jpg);
+  background-image: url(../../assets/images/header.jpg);
+}
+.mvsingle-item.ov-item a.img-lightbox {
+  display: none;
+
+  &:nth-child(-n + 5) {
+    display: block;
   }
-  
+}

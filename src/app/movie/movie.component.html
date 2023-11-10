@@ -120,37 +120,20 @@
                       </div>
                       <div class="mvsingle-item ov-item">
                         <a
+                          *ngFor="let movieImage of movieImages"
                           class="img-lightbox"
-                          data-fancybox-group="gallery"
-                          href="assets/images/uploads/image11.jpg"
-                          ><img src="assets/images/uploads/image1.jpg" alt=""
+                          href="{{
+                            tmdb.getImageWithSize(
+                              movieImage.file_path,
+                              'original'
+                            )
+                          }}"
+                          ><img
+                            src="{{
+                              tmdb.getMovieThumbnailLink(movieImage.file_path)
+                            }}"
+                            alt="{{ movieImage.file_path }}"
                         /></a>
-                        <a
-                          class="img-lightbox"
-                          data-fancybox-group="gallery"
-                          href="assets/images/uploads/image21.jpg"
-                          ><img src="assets/images/uploads/image2.jpg" alt=""
-                        /></a>
-                        <a
-                          class="img-lightbox"
-                          data-fancybox-group="gallery"
-                          href="assets/images/uploads/image31.jpg"
-                          ><img src="assets/images/uploads/image3.jpg" alt=""
-                        /></a>
-                        <div class="vd-it">
-                          <img
-                            class="vd-img"
-                            src="assets/images/uploads/image4.jpg"
-                            alt=""
-                          />
-                          <a
-                            class="fancybox-media hvr-grow"
-                            href="https://www.youtube.com/embed/o-0hcF97wy0"
-                            ><img
-                              src="assets/images/uploads/play-vd.png"
-                              alt=""
-                          /></a>
-                        </div>
                       </div>
                       <div class="title-hd-sm">
                         <h4>cast</h4>
@@ -278,7 +261,10 @@
                         </p>
                       </div>
                       <div class="ads">
-                        <img src="assets/images/uploads/placeholder1.png" alt="" />
+                        <img
+                          src="assets/images/uploads/placeholder1.png"
+                          alt=""
+                        />
                       </div>
                     </div>
                   </div>
