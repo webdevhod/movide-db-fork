@@ -1,13 +1,7 @@
 <div class="hero mv-single-hero">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <!-- <h1> movie listing - list</h1> -->
-        <!-- <ul class="breadcumb">
-					<li class="active"><a href="#">Home</a></li>
-					<li> <span class="ion-ios-arrow-right"></span> movie listing</li>
-				</ul> -->
-      </div>
+      <div class="col-md-12"></div>
     </div>
   </div>
 </div>
@@ -166,61 +160,29 @@
                       </div>
                       <!-- movie cast -->
                       <div class="mvcast-item">
-                        <div class="cast-it">
+                        <div
+                          class="cast-it"
+                          *ngFor="
+                            let cast of movieCredits?.cast?.slice(
+                              0,
+                              movieCreditsPreviewSize
+                            )
+                          "
+                        >
                           <div class="cast-left">
-                            <img src="assets/images/uploads/cast1.jpg" alt="" />
-                            <a href="#">Robert Downey Jr.</a>
+                            <img
+                              src="{{
+                                tmdb.getPeopleProfileImageLink(
+                                  cast.profile_path
+                                )
+                              }}"
+                              alt="{{ cast.name }}"
+                            />
+                            <a [routerLink]="['/person', cast.id]">{{
+                              cast.name
+                            }}</a>
                           </div>
-                          <p>... Robert Downey Jr.</p>
-                        </div>
-                        <div class="cast-it">
-                          <div class="cast-left">
-                            <img src="assets/images/uploads/cast2.jpg" alt="" />
-                            <a href="#">Chris Hemsworth</a>
-                          </div>
-                          <p>... Thor</p>
-                        </div>
-                        <div class="cast-it">
-                          <div class="cast-left">
-                            <img src="assets/images/uploads/cast3.jpg" alt="" />
-                            <a href="#">Mark Ruffalo</a>
-                          </div>
-                          <p>... Bruce Banner/ Hulk</p>
-                        </div>
-                        <div class="cast-it">
-                          <div class="cast-left">
-                            <img src="assets/images/uploads/cast4.jpg" alt="" />
-                            <a href="#">Chris Evans</a>
-                          </div>
-                          <p>... Steve Rogers/ Captain America</p>
-                        </div>
-                        <div class="cast-it">
-                          <div class="cast-left">
-                            <img src="assets/images/uploads/cast5.jpg" alt="" />
-                            <a href="#">Scarlett Johansson</a>
-                          </div>
-                          <p>... Natasha Romanoff/ Black Widow</p>
-                        </div>
-                        <div class="cast-it">
-                          <div class="cast-left">
-                            <img src="assets/images/uploads/cast6.jpg" alt="" />
-                            <a href="#">Jeremy Renner</a>
-                          </div>
-                          <p>... Clint Barton/ Hawkeye</p>
-                        </div>
-                        <div class="cast-it">
-                          <div class="cast-left">
-                            <img src="assets/images/uploads/cast7.jpg" alt="" />
-                            <a href="#">James Spader</a>
-                          </div>
-                          <p>... Ultron</p>
-                        </div>
-                        <div class="cast-it">
-                          <div class="cast-left">
-                            <img src="assets/images/uploads/cast9.jpg" alt="" />
-                            <a href="#">Don Cheadle</a>
-                          </div>
-                          <p>... James Rhodes/ War Machine</p>
+                          <p>... {{ cast.character }}</p>
                         </div>
                       </div>
                       <div class="title-hd-sm">

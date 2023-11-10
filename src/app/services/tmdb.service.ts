@@ -1,10 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { DiscoverMovie } from '../interfaces/discover-movie.interface';
 import { Movie } from '../interfaces/movie.interface';
+import { MovieCast } from '../interfaces/movie-cast.interface';
+import { Results } from '../interfaces/results.interface';
+import { PersonDetails } from '../interfaces/person-details.interface';
+import { MovieCredits } from '../interfaces/movie-credits';
+import { MovieList } from '../interfaces/movie-list.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +21,7 @@ export class TmdbService {
    * @param page
    * @returns List of 20 DiscoverMovieResult
    */
-  getMostPopularMoviesList(page: number = 1): Observable<DiscoverMovie> {
+  getMostPopularMoviesList(page: number = 1): Observable<Results> {
     const options = {
       headers: {
         Authorization: `Bearer ${environment.tmdbAccessToken}`,
@@ -26,7 +30,7 @@ export class TmdbService {
         page: page,
       },
     };
-    return this.http.get<DiscoverMovie>(
+    return this.http.get<Results>(
       environment.getDiscoverMoviesUrl,
       options
     );
@@ -66,23 +70,27 @@ export class TmdbService {
    * @param sizeAsString
    * @returns Link to movie poster with size
    */
-  getMoviePosterFromSize(
+  getImageWithSize(
     jpgFileLink: string | undefined,
     sizeAsString: string = '500'
   ) {
     return jpgFileLink
-      ? `${environment.posterPath}${
+      ? `${environment.imagePathUrl}${
           sizeAsString === 'original' ? '' : 'w'
         }${sizeAsString}${jpgFileLink}`
       : '';
   }
 
   getPosterLink(jpgFileLink: string | undefined): string {
-    return this.getMoviePosterFromSize(jpgFileLink, '300');
+    return this.getImageWithSize(jpgFileLink, '300');
   }
 
   getThumbnailLink(jpgFileLink: string | undefined): string {
-    return this.getMoviePosterFromSize(jpgFileLink, '185');
+    return this.getImageWithSize(jpgFileLink, '185');
+  }
+
+  getPeopleProfileImageLink(jpgFileLink: string | undefined): string {
+    return this.getImageWithSize(jpgFileLink, '92');
   }
 
   /**
@@ -95,7 +103,7 @@ export class TmdbService {
   searchMovieFromTitle(
     keyword: string,
     page: number = 1
-  ): Observable<DiscoverMovie> {
+  ): Observable<Results> {
     const options = {
       headers: {
         Authorization: `Bearer ${environment.tmdbAccessToken}`,
@@ -106,9 +114,102 @@ export class TmdbService {
         page: page,
       },
     };
-    return this.http.get<DiscoverMovie>(
-      environment.searchMoviesByTitle,
+    return this.http.get<Results>(
+      environment.searchMoviesByTitleUrl,
       options
     );
   }
+
+  getMovieCreditsFromId(movieId: number): Observable<MovieCast> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+      },
+    };
+    return this.http.get<MovieCast>(
+      environment.getMovieCreditsUrl(movieId.toString()),
+      options
+    );
+  }
+
+  getMovieAndCredits(
+    movieId: number
+  ): Observable<{ movie: Movie; movieCast: MovieCast }> {
+    return forkJoin({
+      movie: this.getMovieFromId(movieId),
+      movieCast: this.getMovieCreditsFromId(movieId),
+    });
+  }
+
+  getTrendingPeopleFromRange(range: string): Observable<Results> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+      },
+    };
+    return this.http.get<Results>(
+      environment.getTrendingPeopleUrl(range),
+      options
+    );
+  }
+
+  getPersonFromId(personId: number): Observable<PersonDetails> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+      },
+    };
+    return this.http.get<PersonDetails>(
+      environment.getPersonUrl(personId.toString()),
+      options
+    );
+  }
+
+  getPersonMovieCredits(personId: number): Observable<MovieCredits> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+      },
+    };
+    return this.http.get<MovieCredits>(
+      environment.getPersonMovieCreditsUrl(personId.toString()),
+      options
+    );
+  }
+
+  /**
+   * 
+   * @param category now_playing, popular, top_rated, upcoming
+   * @param page page number
+   * @returns MovieList of size 20
+   */
+  getMoviesListFromCategory(category: string = 'now_playing', page: number = 1): Observable<MovieList> {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${environment.tmdbAccessToken}`,
+      },
+      params: {
+        language: 'en-US',
+        page: page,
+      },
+    };
+    return this.http.get<MovieList>(
+      environment.getMovieListUrl+category,
+      options
+    );
+  }
+
+
 }

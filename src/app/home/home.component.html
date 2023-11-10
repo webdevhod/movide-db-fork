@@ -96,11 +96,11 @@
             <div id="tab1" class="tab active">
               <div class="row">
                 <div class="slick-multiItem">
-                  <div class="slide-it">
+                  <div class="slide-it" *ngFor = "let movieFromList of movieLists[movieListCategories[0]]?.results">
                     <div class="movie-item">
                       <div class="mv-img">
                         <img
-                          src="assets/images/uploads/mv-item1.jpg"
+                          src="{{ tmdb.getThumbnailLink(movieFromList.poster_path) }}"
                           alt=""
                           width="185"
                           height="284"
@@ -112,188 +112,9 @@
                         </a>
                       </div>
                       <div class="title-in">
-                        <h6><a href="#">Interstellar</a></h6>
+                        <h6><a href="#">{{movieFromList.title}}</a></h6>
                         <p>
-                          <i class="ion-android-star"></i><span>7.4</span> /10
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="slide-it">
-                    <div class="movie-item">
-                      <div class="mv-img">
-                        <img
-                          src="assets/images/uploads/mv-item2.jpg"
-                          alt=""
-                          width="185"
-                          height="284"
-                        />
-                      </div>
-                      <div class="hvr-inner">
-                        <a href="moviesingle.html">
-                          Read more <i class="ion-android-arrow-dropright"></i>
-                        </a>
-                      </div>
-                      <div class="title-in">
-                        <h6><a href="#">The revenant</a></h6>
-                        <p>
-                          <i class="ion-android-star"></i><span>7.4</span> /10
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="slide-it">
-                    <div class="movie-item">
-                      <div class="mv-img">
-                        <img
-                          src="assets/images/uploads/mv-item3.jpg"
-                          alt=""
-                          width="185"
-                          height="284"
-                        />
-                      </div>
-                      <div class="hvr-inner">
-                        <a href="moviesingle.html">
-                          Read more <i class="ion-android-arrow-dropright"></i>
-                        </a>
-                      </div>
-                      <div class="title-in">
-                        <h6><a href="#">Die hard</a></h6>
-                        <p>
-                          <i class="ion-android-star"></i><span>7.4</span> /10
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="slide-it">
-                    <div class="movie-item">
-                      <div class="mv-img">
-                        <img src="assets/images/uploads/mv-item4.jpg" alt="" />
-                      </div>
-                      <div class="hvr-inner">
-                        <a href="moviesingle.html">
-                          Read more <i class="ion-android-arrow-dropright"></i>
-                        </a>
-                      </div>
-                      <div class="title-in">
-                        <h6><a href="#">The walk</a></h6>
-                        <p>
-                          <i class="ion-android-star"></i><span>7.4</span> /10
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="slide-it">
-                    <div class="movie-item">
-                      <div class="mv-img">
-                        <img
-                          src="assets/images/uploads/mv-item5.jpg"
-                          alt=""
-                          width="185"
-                          height="284"
-                        />
-                      </div>
-                      <div class="hvr-inner">
-                        <a href="moviesingle.html">
-                          Read more <i class="ion-android-arrow-dropright"></i>
-                        </a>
-                      </div>
-                      <div class="title-in">
-                        <h6><a href="#">Interstellar</a></h6>
-                        <p>
-                          <i class="ion-android-star"></i><span>7.4</span> /10
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="slide-it">
-                    <div class="movie-item">
-                      <div class="mv-img">
-                        <img
-                          src="assets/images/uploads/mv-item6.jpg"
-                          alt=""
-                          width="185"
-                          height="284"
-                        />
-                      </div>
-                      <div class="hvr-inner">
-                        <a href="moviesingle.html">
-                          Read more <i class="ion-android-arrow-dropright"></i>
-                        </a>
-                      </div>
-                      <div class="title-in">
-                        <h6><a href="#">The revenant</a></h6>
-                        <p>
-                          <i class="ion-android-star"></i><span>7.4</span> /10
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="slide-it">
-                    <div class="movie-item">
-                      <div class="mv-img">
-                        <img
-                          src="assets/images/uploads/mv-item7.jpg"
-                          alt=""
-                          width="185"
-                          height="284"
-                        />
-                      </div>
-                      <div class="hvr-inner">
-                        <a href="moviesingle.html">
-                          Read more <i class="ion-android-arrow-dropright"></i>
-                        </a>
-                      </div>
-                      <div class="title-in">
-                        <h6><a href="#">Die hard</a></h6>
-                        <p>
-                          <i class="ion-android-star"></i><span>7.4</span> /10
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="slide-it">
-                    <div class="movie-item">
-                      <div class="mv-img">
-                        <img
-                          src="assets/images/uploads/mv-item8.jpg"
-                          alt=""
-                          width="185"
-                          height="284"
-                        />
-                      </div>
-                      <div class="hvr-inner">
-                        <a href="moviesingle.html">
-                          Read more <i class="ion-android-arrow-dropright"></i>
-                        </a>
-                      </div>
-                      <div class="title-in">
-                        <h6><a href="#">The walk</a></h6>
-                        <p>
-                          <i class="ion-android-star"></i><span>7.4</span> /10
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="slide-it">
-                    <div class="movie-item">
-                      <div class="mv-img">
-                        <img
-                          src="assets/images/uploads/mv-item3.jpg"
-                          alt=""
-                          width="185"
-                          height="284"
-                        />
-                      </div>
-                      <div class="hvr-inner">
-                        <a href="moviesingle.html">
-                          Read more <i class="ion-android-arrow-dropright"></i>
-                        </a>
-                      </div>
-                      <div class="title-in">
-                        <h6><a href="#">Die hard</a></h6>
-                        <p>
-                          <i class="ion-android-star"></i><span>7.4</span> /10
+                          <i class="ion-android-star"></i><span>{{ movieFromList.vote_average.toFixed(1) }}</span> /10
                         </p>
                       </div>
                     </div>
@@ -670,9 +491,8 @@
         <div class="tabs">
           <ul class="tab-links-2">
             <li><a href="#tab21">#Popular</a></li>
-            <li class="active"><a href="#tab22"> #Coming soon</a></li>
-            <li><a href="#tab23"> #Top rated </a></li>
-            <li><a href="#tab24"> #Most reviewed</a></li>
+            <li><a href="#tab22"> #Top rated </a></li>
+            <li><a href="#tab23"> #Most reviewed</a></li>
           </ul>
           <div class="tab-content">
             <div id="tab21" class="tab">
@@ -1361,40 +1181,21 @@
           </div>
           <div class="celebrities">
             <h4 class="sb-title">Spotlight Celebrities</h4>
-            <div class="celeb-item">
+            <div
+              class="celeb-item"
+              *ngFor="
+                let trendingPeople of trendingPeoples?.results?.slice(
+                  0,
+                  trendingPeoplesListSize
+                )
+              "
+            >
               <a href="#"
-                ><img src="assets/images/uploads/ava1.jpg" alt=""
+                ><img src="{{ tmdb.getPeopleProfileImageLink(trendingPeople.profile_path) }}" alt="{{ trendingPeople.original_name }}"
               /></a>
               <div class="celeb-author">
-                <h6><a href="#">Samuel N. Jack</a></h6>
-                <span>Actor</span>
-              </div>
-            </div>
-            <div class="celeb-item">
-              <a href="#"
-                ><img src="assets/images/uploads/ava2.jpg" alt=""
-              /></a>
-              <div class="celeb-author">
-                <h6><a href="#">Benjamin Carroll</a></h6>
-                <span>Actor</span>
-              </div>
-            </div>
-            <div class="celeb-item">
-              <a href="#"
-                ><img src="assets/images/uploads/ava3.jpg" alt=""
-              /></a>
-              <div class="celeb-author">
-                <h6><a href="#">Beverly Griffin</a></h6>
-                <span>Actor</span>
-              </div>
-            </div>
-            <div class="celeb-item">
-              <a href="#"
-                ><img src="assets/images/uploads/ava4.jpg" alt=""
-              /></a>
-              <div class="celeb-author">
-                <h6><a href="#">Justin Weaver</a></h6>
-                <span>Actor</span>
+                <h6><a [routerLink]="['/person', trendingPeople.id]"> {{ trendingPeople.original_name }} </a></h6>
+                <span>{{ trendingPeople.known_for_department }}</span>
               </div>
             </div>
             <a href="#" class="btn"
@@ -1534,49 +1335,6 @@
               <div class="trailer-infor">
                 <h4 class="desc">Fast&Furious 8</h4>
                 <p>3:11</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-12 col-xs-12">
-        <div class="sidebar">
-          <div class="celebrities">
-            <h4 class="sb-title">Spotlight Celebrities</h4>
-            <div class="celeb-item">
-              <a href="#"
-                ><img src="assets/images/uploads/ava1.jpg" alt=""
-              /></a>
-              <div class="celeb-author">
-                <h6><a href="#">Samuel N. Jack</a></h6>
-                <span>Actor</span>
-              </div>
-            </div>
-            <div class="celeb-item">
-              <a href="#"
-                ><img src="assets/images/uploads/ava2.jpg" alt=""
-              /></a>
-              <div class="celeb-author">
-                <h6><a href="#">Benjamin Carroll</a></h6>
-                <span>Actor</span>
-              </div>
-            </div>
-            <div class="celeb-item">
-              <a href="#"
-                ><img src="assets/images/uploads/ava3.jpg" alt=""
-              /></a>
-              <div class="celeb-author">
-                <h6><a href="#">Beverly Griffin</a></h6>
-                <span>Actor</span>
-              </div>
-            </div>
-            <div class="celeb-item">
-              <a href="#"
-                ><img src="assets/images/uploads/ava4.jpg" alt=""
-              /></a>
-              <div class="celeb-author">
-                <h6><a href="#">Justin Weaver</a></h6>
-                <span>Actor</span>
               </div>
             </div>
           </div>

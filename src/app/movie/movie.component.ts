@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { TmdbService } from '../services/tmdb.service';
 import { Movie } from '../interfaces/movie.interface';
-import { lastValueFrom, tap } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
+import { MovieCast } from '../interfaces/movie-cast.interface';
 
 @Component({
   selector: 'app-movie',
@@ -13,7 +14,9 @@ import { lastValueFrom, tap } from 'rxjs';
 export class MovieComponent {
   movieId: string | undefined | null;
   movie: Movie | undefined;
-  posterPath: string = environment.posterPath;
+  movieCredits: MovieCast | undefined
+  movieCreditsPreviewSize: number = 4
+  posterPath: string = environment.imagePathUrl;
   constructor(private route: ActivatedRoute, public tmdb: TmdbService) {}
 
   async ngOnInit() {
@@ -21,6 +24,13 @@ export class MovieComponent {
     if (this.movieId === null || this.movieId === undefined) {
       throw new Error('Movie id not found');
     }
-    this.movie = await lastValueFrom(this.tmdb.getMovieFromId(+this.movieId));
+    // this.movie = await lastValueFrom(this.tmdb.getMovieFromId(+this.movieId));
+    await lastValueFrom(this.tmdb.getMovieAndCredits(+this.movieId)).then(
+      (results) => {
+        this.movie = results['movie'];
+        this.movieCredits = results['movieCast'];
+      }
+    );
+
   }
 }
