@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { TmdbService } from '../services/tmdb.service';
@@ -20,6 +20,8 @@ export class MovieComponent {
   movieCreditsPreviewSize: number = 4;
   posterPath: string = environment.imagePathUrl;
   movieImages: MovieImage[] = [];
+
+  @ViewChild('photos') photos: ElementRef | undefined;
 
   constructor(private route: ActivatedRoute, public tmdb: TmdbService) {}
 
@@ -55,5 +57,11 @@ export class MovieComponent {
         })
       )
     );
+  }
+
+  handleViewAllGalleryClick() {
+    if (this.photos) {
+      this.photos.nativeElement.querySelector('.img-lightbox').click();
+    }
   }
 }

@@ -113,12 +113,12 @@
                       </p>
                       <div class="title-hd-sm">
                         <h4>Videos & Photos</h4>
-                        <a href="#" class="time"
-                          >All 5 Videos & 245 Photos
+                        <a class="time view-all-photos-link" (click)="handleViewAllGalleryClick()"
+                          >All {{ movieImages.length }} Photos
                           <i class="ion-ios-arrow-right"></i
                         ></a>
                       </div>
-                      <div class="mvsingle-item ov-item">
+                      <div #photos class="mvsingle-item ov-item">
                         <a
                           *ngFor="let movieImage of movieImages"
                           class="img-lightbox"
